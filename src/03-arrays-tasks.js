@@ -509,10 +509,12 @@ function distinct(arr) {
  */
 function group(array, keySelector, valueSelector) {
   const map = new Map();
-  array.map((el) => map.set(keySelector(el),
+  array.map((el) => map.set(
+    keySelector(el),
     map.has(keySelector(el))
       ? map.get(keySelector(el)).concat(valueSelector(el))
-      : new Array(valueSelector(el))));
+      : new Array(valueSelector(el)),
+  ));
   return map;
 }
 
