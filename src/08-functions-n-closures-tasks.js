@@ -145,8 +145,8 @@ function retry(func, attempts) {
  *
  */
 function logger(func, logFunc) {
-  console.log(func);
-  console.log(logFunc);
+  // console.log(func);
+  // console.log(logFunc);
   return (...args) => {
     logFunc(`${func.name}(${args[1]}) starts`);
     const res = func(...args);
