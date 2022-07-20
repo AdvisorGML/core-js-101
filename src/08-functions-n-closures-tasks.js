@@ -148,9 +148,10 @@ function logger(func, logFunc) {
   // console.log(func);
   // console.log(logFunc);
   return (...args) => {
-    logFunc(`${func.name}(${args[1]}) starts`);
+    console.log(args);
+    logFunc(`${func.name}(${JSON.stringify(args).slice(1, -1)}) starts`);
     const res = func(...args);
-    logFunc(`${func.name}(${args[1]}) ends`);
+    logFunc(`${func.name}(${JSON.stringify(args).slice(1, -1)}) ends`);
     return res;
   };
 }
