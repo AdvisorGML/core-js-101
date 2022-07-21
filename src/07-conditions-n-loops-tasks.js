@@ -371,8 +371,15 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const result = [];
+  const arr = pathes.map((path) => [...path.split('/')]);
+  arr[0].forEach((el, i) => {
+    if (arr.every((dir) => dir[i] === el)) {
+      result.push(`${el}/`);
+    }
+  });
+  return `${result.join('')}`;
 }
 
 /**
@@ -445,11 +452,13 @@ function evaluateTicTacToePosition(position) {
   let win;
   position.forEach((el, index) => {
     if (el[0] === el[1] && el[1] === el[2]) win = el['0'];
-    if (position[0][index] === position[1][index]
-      && position[1][index] === position[2][index]) win = position[0][index];
+    if (
+      position[0][index] === position[1][index]
+      && position[1][index] === position[2][index]
+    ) { win = position[0][index]; }
   });
-  if (position[0][0] === position[1][1] && position[1][1] === position[2][2]) win = position['0']['0'];
-  if (position[2][0] === position[1][1] && position[1][1] === position[0][2]) win = position['2']['0'];
+  if (position[0][0] === position[1][1] && position[1][1] === position[2][2]) { win = position['0']['0']; }
+  if (position[2][0] === position[1][1] && position[1][1] === position[0][2]) { win = position['2']['0']; }
   return win;
 }
 
